@@ -106,6 +106,7 @@ export default class RemindersHandler {
         const groupings: RemindersGroupingByTag = {};
         this._reminders.forEach(reminder => {
             const tag = reminder.tag.toLowerCase(); // Ensure case-insensitivity
+            //const lowCase = reminder.description.toLowerCase();
     
             if (!groupings[tag]) {
                 groupings[tag] = [reminder];
@@ -152,7 +153,7 @@ export default class RemindersHandler {
         
         let search = [];
             for (const key of this._reminders) {
-                if (key.tag === keyword) {
+                if (key.tag.toLowerCase === keyword.toLowerCase) {
                     search.push(key);
                 }
             }
@@ -167,7 +168,8 @@ export default class RemindersHandler {
     private searchDescriptions(keyword: string): Reminder[] {
         let searchDescriptions = [];
         for (const key of this._reminders) {
-            if (key.description.includes(keyword)) {
+            const lowCase = key.description.toLowerCase;
+            if (key.description.includes(keyword.toLowerCase())) {
                 searchDescriptions.push(key);}}
             return searchDescriptions;}
     }
